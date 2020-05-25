@@ -1,0 +1,20 @@
+<html>
+<body>
+  <div class="row" style="text-align: center;">
+     <div class="col-md-3">
+       <h1 >Chat App</h1><hr>
+       <% if(typeof(data) !== 'undefined'){
+         data.forEach((user)=>{ %>
+          <form  action="/getchatboard" method="POST">
+            <button id="user"><%= user.username %></button><br>
+            <input type="hidden" id="ortherid" name="otherid" value="<%= user._id %>">
+          </form>
+        <% });} %>
+      </div>
+
+      <a href="/groupchat">Group Chat</a>
+     </div>
+
+</body>
+</html>
+
