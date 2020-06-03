@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.set('useFindAndModify', false)
-mongoose.connect("mongodb://localhost:27017/chatapp", {
+mongoose.connect("mongodb://localhost:27017/demo", {
   useNewUrlParser: "true",
   useUnifiedTopology: "true"
 })

@@ -2,24 +2,25 @@ const express = require('express');
 const router = express.Router();
 const signupController = require('../controllers/signup_controller');
 const loginController = require('../controllers/login_controller');
-const indexController = require('../controllers/index_controller');
-const dashboardController = require('../controllers/dashboard_controller');
+const fileUpload = require('../utils/upload');
 
-router.get('/',indexController.indexPage);
+const passport = require('passport');
+router.use(passport.initialize());
+router.use(passport.session()); 
 
-router.get('/signup',signupController.getSignup);
-router.post('/signup',signupController.postSignup);
+router.get('/',signupController.getSignup);
 
+router.post('/signup',fileUpload.single('image'),signupController.postSignup);
+
+router.get('/usersWithPopulate', signupController.usersWitPopulate);
+
+router.get('/withWaterfall', signupController.withWaterfall);
+
+router.get('/withParallel', signupController.withParallel);
+router.get('/searchColor', signupController.searchColor);
 router.get('/login', loginController.getLogin);
+
 router.post('/login', loginController.postLogin);
-
-router.get('/dashboard', dashboardController.getDashboard);
-router.post('/getchatboard',dashboardController.getChatBoard);
-router.get('/chat',dashboardController.chatBoard);
-
-router.get('/detail_of_chat',dashboardController.detailChat); 
-
-router.get('/groupchat', dashboardController.groupChat);
 
 
 module.exports = router;

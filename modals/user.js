@@ -4,9 +4,8 @@ var userSchema = new schema({
     username:{type:String},
     email:{type:String},
     password:{type:String},
-    isLogin:{type:String, default:false},
-    isOnline:{type:String, default:false},
-    socketId:{type:String}
+    image:{type:String},
+    address:{type:schema.Types.ObjectId, ref:'Address'}
 });
 
 var User = mongoose.model('User',userSchema,'User');

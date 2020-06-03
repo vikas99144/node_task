@@ -15,9 +15,7 @@ module.exports.postLogin =  (req, res) => {
         if (user) {
             let passwordCompare = bcrypt.compareSync(password, user.password);
             if (passwordCompare) {
-                req.session.userEmail = email;
-                req.session.userId = user._id;
-                res.redirect('/dashboard');
+                res.render('dashboard');
             } else if(user.isLogin){
               res.render('login',{message: "User already login."});
             } 

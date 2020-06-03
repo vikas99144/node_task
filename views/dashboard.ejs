@@ -1,20 +1,32 @@
+<!doctype html>
 <html>
-<body>
-  <div class="row" style="text-align: center;">
-     <div class="col-md-3">
-       <h1 >Chat App</h1><hr>
-       <% if(typeof(data) !== 'undefined'){
-         data.forEach((user)=>{ %>
-          <form  action="/getchatboard" method="POST">
-            <button id="user"><%= user.username %></button><br>
-            <input type="hidden" id="ortherid" name="otherid" value="<%= user._id %>">
-          </form>
-        <% });} %>
-      </div>
+  <head>
+  </head>
+  <body>
+    <h2 style="text-align: center;">Demo dashbars</h2><hr>
+    <div style="text-align: center;">
+     <h4>
+       Check console of socket connetivity with client and server.
+     </h4>
+    </div>
+  </body>
 
-      <a href="/groupchat">Group Chat</a>
-     </div>
+  <script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript">
 
-</body>
+  $(function () {
+  var socket = io();
+
+   socket.emit('event_1','Hi from client event_1')
+        socket.emit('event_2','Hi from client event_2');
+        socket.emit('event_3','Hi from client event_3')
+        socket.emit('event_4','Hi from client event_4')
+
+        socket.on('message_broadcast',(data)=>{
+            console.log(data);
+        })
+  })
+ 
+</script>
 </html>
-
