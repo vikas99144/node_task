@@ -116,22 +116,19 @@ module.exports.withWaterfall = (re, res) => {
 module.exports.withParallel = (re, res) => {
   async.parallel([
     function (callback) {
-      setTimeout(function () {
-        console.log('Task One');
         callback(null, 1);
-      }, 200);
     },
     function (callback) {
-      setTimeout(function () {
-        console.log('Task Two');
         callback(null, 2);
-      }, 100);
     },
     function (callback) {
-      setTimeout(function () {
-        console.log('Task Three');
-        callback(null, 3);
-      }, 100);
+      User.find({}).exec((err, users) => {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, users);
+        }
+      })
     }
   ],
     function (err, results) {
