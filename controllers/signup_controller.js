@@ -10,15 +10,15 @@ module.exports.getSignup = (req,res)=>{
 }
 
 module.exports.postSignup = (req, res)=>{
+  console.log("=== print file detail in request =====",req.file)
     let address = req.body.address;
     let email = req.body.email;
     let password = bcrypt.hashSync(req.body.password,8);
-    console.log("=== print file detail in request =====",req.file)
      if(req.file.size > 1024 * 1024 ){
       fs.unlinkSync(req.file.path); 
       res.render('signup',{message:"File size must be less than 1MB"}); 
      }
-    else if(req.file.mimetype.split('/')[1] !== 'jpg' && req.file.mimetype.split('/')[1] !== 'png'){
+    else if(req.file.mimetype.split('/')[1] == 'jpg' || req.file.mimetype.split('/')[1] == 'png'){
       fs.unlinkSync(req.file.path); 
       res.render('signup',{message:"Please upload only jpg and png file"});
      }

@@ -10,7 +10,9 @@ router.use(passport.session());
 
 router.get('/',signupController.getSignup);
 
-router.post('/signup',fileUpload.single('image'),signupController.postSignup);
+
+
+router.post('/signup',fileUpload,signupController.postSignup);
 
 router.get('/usersWithPopulate', signupController.usersWitPopulate);
 
