@@ -18,7 +18,7 @@ module.exports.postSignup = (req, res)=>{
       fs.unlinkSync(req.file.path); 
       res.render('signup',{message:"File size must be less than 1MB"}); 
      }
-    else if(req.file.mimetype.split('/')[1] == 'jpg' || req.file.mimetype.split('/')[1] == 'png'){
+    else if(req.file.mimetype.split('/')[1] !== 'jpg' || req.file.mimetype.split('/')[1] !== 'png'){
       fs.unlinkSync(req.file.path); 
       res.render('signup',{message:"Please upload only jpg and png file"});
      }
