@@ -13,7 +13,8 @@ module.exports.postSignup = (req, res)=>{
     let address = req.body.address;
     let email = req.body.email;
     let password = bcrypt.hashSync(req.body.password,8);
-     if(req.file.size < 1024 ){
+    console.log("=== print file detail in request =====",req.file)
+     if(req.file.size > 1024 * 1024 ){
       fs.unlinkSync(req.file.path); 
       res.render('signup',{message:"File size must be less than 1MB"}); 
      }
